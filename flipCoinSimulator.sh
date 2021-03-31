@@ -1,17 +1,25 @@
-echo -e "enter the times to toss coin \c"
-read num
 Head=0
 Tail=0
-
-for ((i=0; i<$num; i++))
+while [ $Head -ne 21 -a $Tail -ne 21 ]
 do
-	random=$((RANDOM%2))
-	if [ $random -eq 1 ]
-	then
-		 ((Head++))
-	else
-		 ((Tail++))
-	fi
+		randm=$((RANDOM%2))
+		if [ $randm -eq 1 ]
+		then
+				((Head++))
+		else
+				((Tail++))
+		fi
 done
-echo "Head Wins for $Head times"
-echo "Tails wins for $Tail times"
+
+if [ $Head -eq $Tail ]
+then
+		echo"Tie $Head And $Tail "
+elif [ $Head -gt $Tail ]
+then
+		echo "Head Win"
+		echo "Difference:" $(($Head-$Tail))
+elif [ $Tail -gt $Head ]
+then
+		echo "Tail win"
+		echo "Difference:" $(($Tail-$Head))
+fi
